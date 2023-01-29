@@ -12,6 +12,7 @@ export const load = (async ({ cookies }) => {
   const userResponse = await ClickUp.getUser(token);
 
   if (ClickUp.isError(userResponse)) {
+    cookies.delete('clickup-token');
     return { message: 'Invalid token' };
   }
 
@@ -34,6 +35,7 @@ export const actions = {
     const user = await ClickUp.getUser(token);
 
     if (ClickUp.isError(user)) {
+      cookies.delete('clickup-token');
       return fail(500, { success: false, message: user.err })
     }
 

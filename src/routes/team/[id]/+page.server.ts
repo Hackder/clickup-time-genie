@@ -14,6 +14,7 @@ export const load = (async ({ params, cookies }) => {
   const response = await ClickUp.getSpaces(token, params.id);
 
   if (ClickUp.isError(response)) {
+    cookies.delete('clickup-token');
     throw redirect(307, '/login');
   }
 
@@ -29,6 +30,7 @@ export const load = (async ({ params, cookies }) => {
     const listsResponse = await ClickUp.getFolderlessLists(token, space.id);
 
     if (ClickUp.isError(listsResponse)) {
+      cookies.delete('clickup-token');
       throw redirect(307, '/login');
     }
 
@@ -43,6 +45,7 @@ export const load = (async ({ params, cookies }) => {
     const foldersResponse = await ClickUp.getFolders(token, space.id);
 
     if (ClickUp.isError(foldersResponse)) {
+      cookies.delete('clickup-token');
       throw redirect(307, '/login');
     }
 
@@ -58,6 +61,7 @@ export const load = (async ({ params, cookies }) => {
       const listsResponse = await ClickUp.getLists(token, folder.id);
 
       if (ClickUp.isError(listsResponse)) {
+        cookies.delete('clickup-token');
         throw redirect(307, '/login');
       }
 

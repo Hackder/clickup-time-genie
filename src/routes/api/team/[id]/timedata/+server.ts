@@ -35,6 +35,7 @@ export const GET: RequestHandler = async ({ cookies, url, params }) => {
   const response = await ClickUp.getTimeEntries(token, teamId, timeRange.data.from, timeRange.data.to);
 
   if (ClickUp.isError(response)) {
+    cookies.delete('clickup-token');
     throw error(500, response.err);
   }
 
