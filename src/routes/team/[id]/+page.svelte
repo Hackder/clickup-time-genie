@@ -33,7 +33,7 @@
 	}
 </script>
 
-<div class="container flex flex-row mx-auto gap-8 pt-8">
+<div class="container flex flex-row mx-auto gap-8 pt-8 px-4 lg:px-8">
 	<nav class="gap-8 flex flex-col">
 		<a
 			class="group px-3 py-2 font-bold flex flex-row items-center rounded-lg border border-gray-300 hover:border-purple-500 hover:bg-purple-500 hover:text-white transition-colors duration-300"
