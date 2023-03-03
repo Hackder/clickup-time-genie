@@ -4,8 +4,6 @@ import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params, cookies }) => {
-  await new Promise(resolve => setTimeout(resolve, 3000));
-
   const token = cookies.get('clickup-token');
 
   if (!token) {
