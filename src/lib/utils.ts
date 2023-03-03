@@ -17,3 +17,7 @@ export const forgroundBlack = (color: Color): boolean => {
   const brightness = (red * 299 + green * 587 + blue * 114) / 1000;
   return brightness > 125;
 }
+
+export function sum(arr: number[]): number {
+  return arr.reduce((a, b) => a + b, 0);
+}

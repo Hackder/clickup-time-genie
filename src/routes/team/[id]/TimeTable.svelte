@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { TimeEntry } from '$lib/clickup/clickup.types';
+	import { sum } from '$lib/utils';
 	import { eachDayOfInterval, isSameDay } from 'date-fns';
 
 	export let from: number;
@@ -17,6 +18,15 @@
 			duration: entries.reduce((acc, entry) => acc + Number(entry.duration), 0)
 		};
 	});
+
+  function roundToQuarterHour(duration: number) {
+    return Math.ceil((duration * 4) / 1000 / 60 / 60) / 4;
+  }
+
+  $: roundedData = data.map((entry) => ({
+    ...entry,
+    duration: roundToQuarterHour(entry.duration)
+  }));
 </script>
 
 <table class="table-auto">
@@ -28,15 +38,25 @@
 		</tr>
 	</thead>
 	<tbody>
-		{#each data as timeEntry (timeEntry.date.getTime())}
+		{#each roundedData as timeEntry (timeEntry.date.getTime())}
 			<tr class="border-b">
 				<td class="px-6 py-2">{timeEntry.date.toLocaleDateString()}</td>
 				<td class="px-6 py-2">{timeEntry.tasks.join(' + ')}</td>
 				<td class="px-6 py-2">
-					{(Math.ceil((timeEntry.duration * 4) / 1000 / 60 / 60) / 4).toFixed(2)}
+					{timeEntry.duration.toFixed(2)}
 					<span class="select-none">h</span>
 				</td>
 			</tr>
 		{/each}
 	</tbody>
+  <tfoot>
+    <tr>
+      <td class="px-6 py-2">Sum</td>
+      <td class="px-6 py-2"></td>
+      <td class="px-6 py-2">
+        {sum(data.map((entry) => entry.duration)).toFixed(2)}
+        <span class="select-none">h</span>
+      </td>
+    </tr>
+  </tfoot>
 </table>
