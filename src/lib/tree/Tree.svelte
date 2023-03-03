@@ -18,7 +18,6 @@
 	}
 
 	function changed(id: string) {
-		console.log(id);
 		function change(item: Item): Item {
 			if (item.id === id) {
 				setChildrenSelected(item, !item.selected);

@@ -9,8 +9,6 @@
 
 	$: black = forgroundBlack(colorFromHex(team.color));
 	$: textColor = black ? 'black' : 'white';
-
-  $: console.log($navigating?.to?.url.pathname)
 </script>
 
 <div
