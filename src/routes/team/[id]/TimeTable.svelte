@@ -54,7 +54,7 @@
       <td class="px-6 py-2">Sum</td>
       <td class="px-6 py-2"></td>
       <td class="px-6 py-2">
-        {sum(data.map((entry) => entry.duration)).toFixed(2)}
+        {sum(roundedData.map((entry) => entry.duration)).toFixed(2)}
         <span class="select-none">h</span>
       </td>
     </tr>
