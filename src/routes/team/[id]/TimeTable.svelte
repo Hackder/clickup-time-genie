@@ -23,9 +23,13 @@
 		return Math.ceil((duration * 4) / 1000 / 60 / 60) / 4;
 	}
 
+	function roundToMinute(duration: number) {
+		return Math.ceil(duration / 1000 / 60) * 1000 * 60;
+	}
+
 	$: roundedData = data.map((entry) => ({
 		...entry,
-		duration: entry.duration //roundToQuarterHour(entry.duration)
+		duration: roundToMinute(entry.duration) //roundToQuarterHour(entry.duration)
 	}));
 </script>
 
