@@ -24,7 +24,7 @@
 	}
 
 	function roundToMinute(duration: number) {
-		return Math.ceil(duration / 1000 / 60) * 1000 * 60;
+		return Math.ceil(duration / 1000 / 60) / 60;
 	}
 
 	$: roundedData = data.map((entry) => ({
