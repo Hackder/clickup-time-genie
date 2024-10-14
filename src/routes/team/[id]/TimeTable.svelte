@@ -19,14 +19,14 @@
 		};
 	});
 
-  function roundToQuarterHour(duration: number) {
-    return Math.ceil((duration * 4) / 1000 / 60 / 60) / 4;
-  }
+	function roundToQuarterHour(duration: number) {
+		return Math.ceil((duration * 4) / 1000 / 60 / 60) / 4;
+	}
 
-  $: roundedData = data.map((entry) => ({
-    ...entry,
-    duration: roundToQuarterHour(entry.duration)
-  }));
+	$: roundedData = data.map((entry) => ({
+		...entry,
+		duration: entry.duration //roundToQuarterHour(entry.duration)
+	}));
 </script>
 
 <table class="table-auto">
@@ -49,14 +49,14 @@
 			</tr>
 		{/each}
 	</tbody>
-  <tfoot>
-    <tr>
-      <td class="px-6 py-2">Sum</td>
-      <td class="px-6 py-2"></td>
-      <td class="px-6 py-2">
-        {sum(roundedData.map((entry) => entry.duration)).toFixed(2)}
-        <span class="select-none">h</span>
-      </td>
-    </tr>
-  </tfoot>
+	<tfoot>
+		<tr>
+			<td class="px-6 py-2">Sum</td>
+			<td class="px-6 py-2" />
+			<td class="px-6 py-2">
+				{sum(roundedData.map((entry) => entry.duration)).toFixed(2)}
+				<span class="select-none">h</span>
+			</td>
+		</tr>
+	</tfoot>
 </table>
